@@ -12,10 +12,10 @@ class App extends Component {
 
   componentDidMount() {
     fetch("http://localhost:8080/api/projetos")
-    .then(res => res.json())
-    .then((result) => {
-      this.setState({lista: result.data})
-    });
+      .then(res => res.json())
+      .then((result) => {
+        this.setState({ lista: result.data })
+      });
   }
 
   render() {
@@ -36,18 +36,27 @@ class App extends Component {
             this.state.lista.map(function (projeto) {
               return (
                 <div className="column" >
-                  <div className="ui card">
-                    <div className="image"><img src="/images/avatar/large/matthew.png" alt="" /></div>
+                  <div className="ui card centered">
+                    <div className="image"><img src="https://picsum.photos/600" alt="" /></div>
                     <div className="content">
+                      <img src="https://randomuser.me/api/portraits/women/90.jpg" className="ui right floated avatar image" alt="" />
                       <div className="header">{projeto.nome}</div>
                       <div className="meta"><span className="date">{projeto.usuario}</span></div>
                       <div className="description">{projeto.descricao}</div>
                     </div>
-                    <div className="extra content">
-                      <a href="index.html">
-                        <i aria-hidden="true" className="user icon"></i>
-                        22 Friends
+                    <div className="content">
+                      <span>
+                        <i aria-hidden="true" className="chat icon"></i>10 comentários
+                      </span>
+                      <a href="index.html" className="right floated">
+                        <i aria-hidden="true" className="heart icon"></i>5 likes
                       </a>
+                    </div>
+                    <div class="extra content">
+                      <div class="ui large transparent left icon input">
+                        <i class="heart outline icon"></i>
+                        <input type="text" placeholder="adicionar comentário..." />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -60,5 +69,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
