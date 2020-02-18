@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import CardProjeto from "./components/CardProjeto";
 
 class App extends Component {
 
   constructor() {
     super();
-    this.state = {
-      lista: []
-    };
+    this.state = { lista: [] };
   }
 
   componentDidMount() {
@@ -33,34 +32,16 @@ class App extends Component {
         </div>
         <div className="ui stackable three column grid" id="grid-projetos">
           {
-            this.state.lista.map(function (projeto) {
+            this.state.lista.map(projeto => {
               return (
-                <div className="column" >
-                  <div className="ui card centered">
-                    <div className="image"><img src="https://picsum.photos/600" alt="" /></div>
-                    <div className="content">
-                      <img src="https://randomuser.me/api/portraits/women/90.jpg" className="ui right floated avatar image" alt="" />
-                      <div className="header">{projeto.nome}</div>
-                      <div className="meta"><span className="date">{projeto.usuario}</span></div>
-                      <div className="description">{projeto.descricao}</div>
-                    </div>
-                    <div className="content">
-                      <span>
-                        <i aria-hidden="true" className="chat icon"></i>10 comentários
-                      </span>
-                      <a href="index.html" className="right floated">
-                        <i aria-hidden="true" className="heart icon"></i>5 likes
-                      </a>
-                    </div>
-                    <div class="extra content">
-                      <div class="ui large transparent left icon input">
-                        <i class="heart outline icon"></i>
-                        <input type="text" placeholder="adicionar comentário..." />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
+                <CardProjeto
+                  key={projeto.id} 
+                  nome={projeto.nome} 
+                  usuario={projeto.usuario} 
+                  descricao={projeto.descricao} 
+                  likes={projeto.likes} 
+                  id={projeto.id}
+                />)
             })
           }
         </div>
