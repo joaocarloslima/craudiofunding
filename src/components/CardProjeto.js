@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
 
 class CardProjetos extends Component {
-    constructor() {
+
+    constructor(){
         super();
         this.state = {
-            likes: 0
+            likes:0
         }
         this.addLike = this.addLike.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({ likes: this.props.likes })
+    componentDidMount(){
+        this.setState({likes: this.props.likes});
     }
 
-    addLike() {
-        let likes = parseInt(this.state.likes) + 1
-        fetch(
-            "http://localhost:8080/api/projetos/" + this.props.id,
-                {
-                    method: 'PUT',
-                    headers: {"Content-type": "application/json"},
-                    body: JSON.stringify({likes: likes}) 
-                }
-            )
-            .then(result => result.json())
-            .then(function(result){
-                this.setState({ likes: result.likes });
-            }.bind(this)
-        )
+    addLike(){
+        let novo_likes = parseInt(this.state.likes + 1);
+        this.setState({likes: novo_likes});
     }
+    
+    
 
     render() {
         return (
@@ -41,14 +32,21 @@ class CardProjetos extends Component {
                         <div className="meta"><span className="date">{this.props.usuario}</span></div>
                         <div className="description">{this.props.descricao}</div>
                     </div>
+
                     <div className="content">
                         <span>
                             <i aria-hidden="true" className="chat icon"></i>10 comentários
                       </span>
                         <span href="/" className="right floated botao-like" onClick={this.addLike}>
-                            <i aria-hidden="true" className="heart icon"></i>{this.state.likes} likes
+                            <i aria-hidden="true" className="heart icon"></i>
+                            {this.state.likes} likes
                         </span>
                     </div>
+
+
+
+
+
                     <div className="extra content">
                         <div className="ui large transparent left icon input">
                             <i className="heart outline icon"></i>

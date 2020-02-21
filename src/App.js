@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CardProjeto from "./components/CardProjeto";
+import ModalNovoProjeto from "./components/ModalNovoProjeto";
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
         <div className="ui inverted fixed huge menu">
           <div className="ui container">
             <a href="index.html" className="item">CraudioFunding</a>
-            <button className="ui primary button">criar projeto</button>
+            <ModalNovoProjeto />
             <div className="ui icon input right menu">
               <input type="text" placeholder="procurar projeto..." />
               <i aria-hidden="true" className="search icon"></i>
@@ -35,12 +36,11 @@ class App extends Component {
             this.state.lista.map(projeto => {
               return (
                 <CardProjeto
-                  key={projeto.id} 
+                  key={projeto.id}
                   nome={projeto.nome} 
                   usuario={projeto.usuario} 
                   descricao={projeto.descricao} 
                   likes={projeto.likes} 
-                  id={projeto.id}
                 />)
             })
           }
